@@ -1,3 +1,6 @@
-FROM golang:alpine
+FROM golang
 MAINTAINER philip.chan@nautiluscapital.net
-RUN apk add --no-cache git
+RUN echo "deb http://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0/ ./" >> /etc/apt/sources.list \
+    && wget https://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0/Release.key -O- | sudo apt-key add \
+    && apt-get install libzmq3-dev \
+    && rm -rf /var/lib/apt/lists/*
